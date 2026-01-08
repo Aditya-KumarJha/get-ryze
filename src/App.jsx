@@ -1,6 +1,8 @@
 import React from 'react';
 import Header from './components/layout/Header';
 import HeroSection from './components/sections/HeroSection';
+import FeaturesShowcase from './components/sections/FeaturesShowcase';
+import ClientMarquee from './components/sections/ClientMarquee';
 
 const App = () => {
   return (
@@ -8,6 +10,8 @@ const App = () => {
       <Header />
       <main>
         <HeroSection />
+        <FeaturesShowcase />
+        <ClientMarquee />
       </main>
     </div>
   );

@@ -1,0 +1,62 @@
+
+.marquee-section {
+  padding: 4.5rem 0; /* increased vertical spacing */
+  background: white;
+}
+
+.marquee-viewport {
+  width: 100%;
+  overflow: hidden;
+}
+
+.marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 4.5rem; /* gap between the two groups */
+  /* JS will drive transform for continuous movement */
+  will-change: transform;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+
+.marquee-group {
+  display: flex;
+  gap: 4.5rem; /* more breathing room between logos */
+  align-items: center;
+  flex: 0 0 auto;
+}
+
+.marquee-item {
+  flex: 0 0 auto;
+  filter: grayscale(100%) brightness(0) opacity(.28);
+  transition: filter 220ms ease, opacity 220ms ease, transform 220ms ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.marquee-item:hover {
+  filter: none;
+  opacity: 1;
+  transform: translateY(-4px);
+}
+
+.marquee-item img {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+@media (min-width: 640px) {
+  .marquee-item img { height: 56px; }
+}
+
+@media (min-width: 1024px) {
+  .marquee-item img { height: 72px; }
+}
+
+@keyframes marquee-move {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
