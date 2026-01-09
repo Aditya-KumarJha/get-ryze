@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { motion } from 'framer-motion';
 import '../../styles/marquee.css';
 
 const defaultImages = [
@@ -12,6 +13,16 @@ const defaultImages = [
   '/marquee/tetra-logo.avif',
   '/marquee/villlyx_logo.avif',
 ];
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.04, delayChildren: 0.05 } }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 8 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] } }
+};
 
 const ClientMarquee = ({ imagePaths = defaultImages, speed = 120 /* px/sec */ }) => {
   // Duplicate the images so the marquee appears infinite
@@ -111,27 +122,34 @@ const ClientMarquee = ({ imagePaths = defaultImages, speed = 120 /* px/sec */ })
   }, [direction, speed]);
 
   return (
-    <section className="marquee-section" aria-label="Client logos">
+    <motion.section 
+      className="marquee-section" 
+      aria-label="Client logos" 
+      variants={containerVariants} 
+      initial="hidden" 
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+    >
       <div className="marquee-viewport">
         <div className="marquee-track" ref={trackRef}>
           <div className="marquee-group" ref={groupRef}>
             {images.map((src, i) => (
-              <div className="marquee-item" key={`a-${i}`}>
+              <motion.div className="marquee-item" key={`a-${i}`} variants={itemVariants}>
                 <img src={src} alt={`Client ${i + 1}`} loading="lazy" />
-              </div>
+              </motion.div>
             ))}
           </div>
 
           <div className="marquee-group" aria-hidden ref={groupBRef}>
             {images.map((src, i) => (
-              <div className="marquee-item" key={`b-${i}`}>
+              <motion.div className="marquee-item" key={`b-${i}`} variants={itemVariants}>
                 <img src={src} alt="" />
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

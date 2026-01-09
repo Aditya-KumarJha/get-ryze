@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
 import EmailInput from '../ui/EmailInput';
 
@@ -57,7 +57,8 @@ const HeroSection = () => {
         className="max-w-7xl mx-auto"
         variants={containerVariants}
         initial="hidden"
-        animate="visible"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
       >
         
         {/* Desktop & Tablet View - Hidden on Mobile */}
