@@ -1,8 +1,35 @@
 import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
 import EmailInput from '../ui/EmailInput';
+import FlipText from '../ui/FlipText';
+import { Suspense } from 'react';
+const ImageCursorTrail = React.lazy(() => import('../ui/ImageCursorTrail'));
 
 const HeroSection = () => {
+    // Images from public folder and subfolders for cursor trail
+    const trailImages = [
+      "/marquee/caleyx-logo.avif",
+      "/marquee/directly_logo.avif",
+      "/marquee/hg_logo.avif",
+      "/marquee/mos_logo1.avif",
+      "/marquee/motif_digital.avif",
+      "/marquee/pupil_logo1.avif",
+      "/marquee/ritma_logo1.avif",
+      "/marquee/tetra-logo.avif",
+      "/marquee/villlyx_logo.avif",
+      "/wall/5-stars-g2.avif",
+      "/wall/angrez_google.avif",
+      "/wall/angrez_SR.avif",
+      "/wall/clutch-stars.avif",
+      "/wall/face4_man.avif",
+      "/wall/face5_woman.avif",
+      "/wall/man_face1.avif",
+      "/wall/man-face2.avif",
+      "/wall/Trustpilot_Logo.avif",
+      "/wall/wall-3.avif",
+      "/wall/woman_face3.avif",
+      "/wall/X-Logo1.avif",
+    ];
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -52,34 +79,51 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-12 sm:py-16 md:py-20 lg:py-24">
+    <section className="w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-12 sm:py-16 md:py-20 lg:py-24 relative overflow-visible">
+      {/* Animated image trail behind content, only on desktop/tablet */}
+      <div
+        className="absolute inset-0 z-0"
+        style={{ width: "100%", height: "100%" }}
+      >
+        <Suspense fallback={null}>
+          <ImageCursorTrail
+            items={trailImages}
+            maxNumberOfImages={7}
+            imgClass="w-24 h-24 opacity-70 mix-blend-multiply"
+            distance={18}
+            fadeAnimation={true}
+            className="w-full h-full"
+          />
+        </Suspense>
+      </div>
+
+      {/* Main HeroSection content, stays above animation */}
       <motion.div 
-        className="max-w-7xl mx-auto"
+        className="max-w-7xl mx-auto relative z-10"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
       >
-        
         {/* Desktop & Tablet View - Hidden on Mobile */}
         <div className="hidden sm:block">
           {/* Hero Heading */}
-          <div className="text-center mb-8 sm:mb-10 md:mb-12 lg:mb-16">
+          <div className="mt-22 text-center mb-8 sm:mb-10 md:mb-12 lg:mb-16">
             <h2 className="md:pr-4 lg:pr-0 md:font-extrabold lg:font-extrabold leading-none">
-              <motion.span 
-                className="block text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl text-black mb-1 sm:mb-2 md:mb-2"
+              <motion.div
+                className="flex justify-center gap-6 text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl mb-1 sm:mb-2 md:mb-2"
                 variants={headingVariants}
               >
-                LET{' '}
-                <span className="text-[#FF4801]">AI MANAGE</span>
-              </motion.span>
-              <motion.span 
-                className="block text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl"
+                <FlipText className="text-black">LET</FlipText>
+                <FlipText className="text-[#FF4801]">AI MANAGE</FlipText>
+              </motion.div>
+              <motion.div
+                className="md:mt-8 lg:mt-12 flex justify-center gap-6 text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl"
                 variants={headingVariants}
               >
-                <span className="text-black">YOUR </span>
-                <span className="text-[#FF4801]">ADS</span>
-              </motion.span>
+                <FlipText className="text-black">YOUR</FlipText>
+                <FlipText className="text-[#FF4801]">ADS</FlipText>
+              </motion.div>
             </h2>
           </div>
 
@@ -139,20 +183,26 @@ const HeroSection = () => {
           {/* Hero Heading - Mobile */}
           <div className="mt-5 text-center mb-8">
             <h2 className="-tracking-widest font-extrabold leading-none">
-              <motion.span 
-                className="block text-6xl text-black mb-1"
+              <motion.div
+                className="flex justify-center gap-3 text-5xl mb-1"
                 variants={headingVariants}
               >
-                LET{' '}
-                <span className="text-[#FF4801]">AI MANAGE</span>
-              </motion.span>
-              <motion.span 
-                className="block text-6xl"
+                <FlipText className="text-black">LET</FlipText>
+                <FlipText className="text-[#FF4801]">AI</FlipText>
+              </motion.div>
+              <motion.div
+                className="flex justify-center gap-3 text-5xl mb-1"
                 variants={headingVariants}
               >
-                <span className="text-black">YOUR </span>
-                <span className="text-[#FF4801]">ADS</span>
-              </motion.span>
+                <FlipText className="mt-1 mb-1 text-[#FF4801]">MANAGE</FlipText>
+              </motion.div>
+              <motion.div
+                className="flex justify-center gap-3 text-5xl"
+                variants={headingVariants}
+              >
+                <FlipText className="text-black">YOUR</FlipText>
+                <FlipText className="text-[#FF4801]">ADS</FlipText>
+              </motion.div>
             </h2>
           </div>
 
@@ -201,7 +251,6 @@ const HeroSection = () => {
             />
           </motion.div>
         </div>
-
       </motion.div>
     </section>
   );
