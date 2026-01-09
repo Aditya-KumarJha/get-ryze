@@ -15,7 +15,7 @@ const EmailInput = () => {
       onSubmit={handleSubmit} 
       className="w-full max-w-lg sm:max-w-lg"
     >
-      <div className="flex items-center w-full border-2 border-gray-300 rounded-full overflow-hidden bg-white shadow-sm hover:border-gray-400 hover:shadow-xl hover:scale-105 transition-all duration-300 ease-out">
+      <div className="flex items-center w-full border-2 border-gray-300 rounded-full overflow-hidden bg-white shadow-sm hover:border-gray-400 transform-gpu transition-transform duration-300 ease-out hover:scale-105 md:hover:scale-110 hover:shadow-2xl">
         {/* Email Input */}
         <input
           type="email"

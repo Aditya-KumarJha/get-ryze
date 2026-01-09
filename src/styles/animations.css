@@ -48,7 +48,108 @@
   }
 }
 
+/* AI Showcase Animations */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.3s ease-out forwards;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.2s ease-out forwards;
+}
+
+@keyframes cursor-move {
+  0% {
+    transform: translateY(8px);
+  }
+  16% {
+    transform: translateY(57px);
+  }
+  32% {
+    transform: translateY(106px);
+  }
+  48% {
+    transform: translateY(155px);
+  }
+  64% {
+    transform: translateY(204px);
+  }
+  80% {
+    transform: translateY(253px);
+  }
+  96% {
+    transform: translateY(253px);
+  }
+  100% {
+    transform: translateY(8px);
+  }
+}
+
+.animate-cursor-move {
+  animation: cursor-move 12s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Force Hide Scrollbar Aggressively */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
+/* Breakpoint utility for 530px */
+@media (min-width: 530px) {
+  .breakat_530px\:block {
+    display: block !important;
+  }
+  .breakat_530px\:left-\[90\%\] {
+    left: 90% !important;
+  }
+}
+
 .pause-animation:hover {
   animation-play-state: paused !important;
+}
+
+/* Continuous ticker animations used by the client marquee/ticker */
+@keyframes ticker {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-ticker-left {
+  animation: ticker 45s linear infinite;
+}
+
+.animate-ticker-right {
+  animation: ticker 45s linear infinite reverse;
 }
 
