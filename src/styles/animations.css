@@ -153,3 +153,26 @@
   animation: ticker 45s linear infinite reverse;
 }
 
+/* Vertical auto-scrolling used by the marketer section */
+@keyframes scroll-vertical {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+.animate-scroll-vertical {
+  animation: scroll-vertical 21s linear infinite;
+}
+.animate-scroll-vertical:hover, .pause-animation:hover {
+  animation-play-state: paused !important;
+}
+
+@keyframes auto-scroll {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+.animate-auto-scroll {
+  animation: auto-scroll 25s linear infinite;
+}
+.animate-auto-scroll:hover {
+  animation-play-state: paused !important;
+}
+

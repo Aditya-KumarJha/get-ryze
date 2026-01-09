@@ -168,7 +168,7 @@ const AutonomousAI = () => {
                       </span>
                       <button
                         className={`
-                          px-4 py-1.5 rounded-full hidden breakat_530px:block font-medium transition-all duration-300 w-[74px] text-center outline-none focus:outline-none flex items-center justify-center
+                          px-4 py-1.5 rounded-full breakat_530px:block font-medium transition-all duration-300 w-18.5 text-center outline-none focus:outline-none flex items-center justify-center
                           ${
                             task.applied
                               ? 'bg-[#FF4801] text-white shadow-sm'

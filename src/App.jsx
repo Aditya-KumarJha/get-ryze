@@ -6,6 +6,8 @@ import ClientMarquee from './components/sections/ClientMarquee';
 import Testimonials from './components/sections/Testimonials';
 import AIShowcase from './components/sections/AIShowcase';
 import TickerSection from './components/sections/TickerSection';
+import MarketerSection from './components/sections/MarketerSection';
+import Footer from './components/sections/Footer';
 
 const App = () => {
   return (
@@ -18,6 +20,8 @@ const App = () => {
         <Testimonials />
         <AIShowcase />
         <TickerSection />
+        <MarketerSection />
+        <Footer />
       </main>
     </div>
   );
