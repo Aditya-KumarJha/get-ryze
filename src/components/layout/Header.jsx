@@ -45,20 +45,36 @@ const Header = () => {
             Case Studies
           </a>
           {/* About Us Dropdown */}
-          <div className="relative group">
-            <a
-              href="/about"
-              className={`tracking-wide text-zinc-600 hover:text-black transition-all duration-300 font-medium ${
-                isScrolled ? "text-[15px]" : "text-[17.3px]"
-              }`}
-            >
-              About Us
-            </a>
-            <div className="absolute left-1/2 -translate-x-1/2 mt-2 w-40 bg-white rounded-xl shadow-lg border border-zinc-100 opacity-0 group-hover:opacity-100 group-hover:pointer-events-auto pointer-events-none transition-all duration-200 z-50">
-              <a href="#our-story" className="block px-5 py-3 text-zinc-700 hover:bg-zinc-50 rounded-t-xl transition-colors">Our Story</a>
-              <a href="#community" className="block px-5 py-3 text-zinc-700 hover:bg-zinc-50 rounded-b-xl transition-colors">Community</a>
+            <div className="relative group" tabIndex={0}>
+              <span
+                className={`tracking-wide text-zinc-600 hover:text-black transition-all duration-300 font-medium cursor-pointer ${
+                  isScrolled ? "text-[15px]" : "text-[17.3px]"
+                }`}
+                tabIndex={0}
+              >
+                About Us
+              </span>
+              <div
+                className="absolute left-1/2 -translate-x-1/2 mt-2 w-40 bg-white rounded-xl shadow-lg border border-zinc-100 transition-all duration-200 z-50"
+                style={{ pointerEvents: 'auto' }}
+                onMouseEnter={e => e.currentTarget.parentElement.classList.add('dropdown-open')}
+                onMouseLeave={e => e.currentTarget.parentElement.classList.remove('dropdown-open')}
+              >
+                <a href="/about" className="block px-5 py-3 text-zinc-700 hover:bg-zinc-50 rounded-t-xl transition-colors">Our Story</a>
+                <a href="#" className="block px-5 py-3 text-zinc-700 hover:bg-zinc-50 rounded-b-xl transition-colors">Community</a>
+              </div>
+              <style>{`
+                .group .absolute {
+                  opacity: 0;
+                  pointer-events: none;
+                }
+                .group:hover .absolute,
+                .group.dropdown-open .absolute {
+                  opacity: 1;
+                  pointer-events: auto;
+                }
+              `}</style>
             </div>
-          </div>
         </div>
 
         {/* CTA — RIGHT CORNER */}
