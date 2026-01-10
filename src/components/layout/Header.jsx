@@ -37,7 +37,7 @@ const Header = () => {
         {/* Center Navigation */}
         <div className="hidden md:flex items-center gap-8 lg:gap-14 absolute left-1/2 -translate-x-1/2">
           <a
-            href="#case-studies"
+            href="/case-studies"
             className={`tracking-wide text-zinc-600 hover:text-black transition-all duration-300 font-medium ${
               isScrolled ? "text-[15px]" : "text-[17.3px]"
             }`}
@@ -47,7 +47,7 @@ const Header = () => {
           {/* About Us Dropdown */}
           <div className="relative group">
             <a
-              href="#about"
+              href="/about"
               className={`tracking-wide text-zinc-600 hover:text-black transition-all duration-300 font-medium ${
                 isScrolled ? "text-[15px]" : "text-[17.3px]"
               }`}
