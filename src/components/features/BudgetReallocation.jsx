@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { FaLinkedin } from 'react-icons/fa';
+import { FaLinkedin, FaRedditAlien, FaAmazon, FaXTwitter } from 'react-icons/fa6';
 import { FcGoogle } from 'react-icons/fc';
+import { SiMeta, SiPerplexity } from 'react-icons/si';
+import { SiOpenai } from 'react-icons/si';
 import { FiRefreshCw } from 'react-icons/fi';
 import '../../styles/animations.css';
 
@@ -79,17 +81,17 @@ const BudgetReallocation = () => {
       case 'google':
         return <FcGoogle className="w-8 h-8" />;
       case 'chatgpt':
-        return <img src="/logo/chatgpt-logo.png" alt="ChatGPT" className="w-8 h-8 object-contain" />;
+        return <SiOpenai className="w-8 h-8 text-[#10a37f]" title="ChatGPT" />;
       case 'meta':
-        return <img src="/logo/meta-logo.png" alt="Meta" className="w-8 h-8 object-contain" />;
+        return <SiMeta className="w-8 h-8 text-[#0866FF]" title="Meta" />;
       case 'reddit':
-        return <img src="/logo/reddit-logo.png" alt="Reddit" className="w-8 h-8 object-contain" />;
+        return <FaRedditAlien className="w-8 h-8 text-[#FF4500]" title="Reddit" />;
       case 'perplexity':
-        return <img src="/logo/perplexity-color.png" alt="Perplexity" className="w-8 h-8 object-contain" />;
+        return <SiPerplexity className="w-8 h-8 text-[#5A57DD]" title="Perplexity" />;
       case 'amazon':
-        return <img src="/logo/amazon-logo.png" alt="Amazon" className="w-8 h-8 object-contain" />;
+        return <FaAmazon className="w-8 h-8 text-[#FF9900]" title="Amazon" />;
       case 'x':
-        return <img src="/logo/X-Logo.png" alt="X" className="w-8 h-8 object-contain" />;
+        return <FaXTwitter className="w-8 h-8 text-black" title="X" />;
       default:
         return null;
     }

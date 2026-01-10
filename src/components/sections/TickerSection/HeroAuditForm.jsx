@@ -28,10 +28,10 @@ const HeroAuditForm = () => {
           <div className="relative max-w-xl mx-auto" style={{ opacity: 1, transform: 'none' }}>
             <form onSubmit={handleSubmit} className="bg-white p-1.5 rounded-4xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] border border-white/50 flex items-center gap-2 transform-gpu transition-transform duration-300 ease-out hover:scale-105 md:hover:scale-110 hover:shadow-2xl hover:shadow-orange-500/30">
               <div className="pl-2 md:pl-6 pr-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-search w-5 h-5 text-zinc-400" aria-hidden="true">
-                  <path d="m21 21-4.34-4.34"></path>
-                  <circle cx="11" cy="11" r="8"></circle>
-                </svg>
+                {/* Search icon */}
+                <span className="w-5 h-5 flex items-center justify-center text-zinc-400">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.34-4.34" /></svg>
+                </span>
               </div>
 
               <input
@@ -47,13 +47,10 @@ const HeroAuditForm = () => {
                 type="submit"
                 className="bg-[#FF4801] hover:bg-[#ff5d1f] text-white px-4 md:px-8 py-3 rounded-3xl font-bold text-base transition-all duration-300 flex items-center gap-2 shadow-lg shadow-orange-500/20 hover:shadow-orange-500/40 hover:-translate-y-0.5 whitespace-nowrap disabled:opacity-70"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-scan-line w-4 h-4" aria-hidden="true">
-                  <path d="M3 7V5a2 2 0 0 1 2-2h2"></path>
-                  <path d="M17 3h2a2 2 0 0 1 2 2v2"></path>
-                  <path d="M21 17v2a2 2 0 0 1-2 2h-2"></path>
-                  <path d="M7 21H5a2 2 0 0 1-2-2v-2"></path>
-                  <path d="M7 12h10"></path>
-                </svg>
+                {/* ScanLine icon */}
+                <span className="w-4 h-4 flex items-center justify-center">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M7 12h10"/></svg>
+                </span>
                 <TextHover text="Audit Account" customClass="text-white !p-0 !m-0" />
               </button>
             </form>

@@ -1,30 +1,18 @@
-import React from 'react';
+import { Route, Routes } from 'react-router-dom';
+import HomePage from './pages/HomePage';
 import Header from './components/layout/Header';
-import HeroSection from './components/sections/HeroSection';
-import FeaturesShowcase from './components/sections/FeaturesShowcase';
-import ClientMarquee from './components/sections/ClientMarquee';
-import Testimonials from './components/sections/Testimonials';
-import AIShowcase from './components/sections/AIShowcase';
-import TickerSection from './components/sections/TickerSection';
-import MarketerSection from './components/sections/MarketerSection';
 import Footer from './components/sections/Footer';
 
 const App = () => {
   return (
-    <div className="min-h-screen bg-white">
+    <div>
       <Header />
-      <main>
-        <HeroSection />
-        <FeaturesShowcase />
-        <ClientMarquee />
-        <Testimonials />
-        <AIShowcase />
-        <TickerSection />
-        <MarketerSection />
-        <Footer />
-      </main>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+      </Routes>
+      <Footer />
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App

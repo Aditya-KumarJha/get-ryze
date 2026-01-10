@@ -8,22 +8,10 @@ const SmallCard = ({ title, value, hint }) => (
       </span>
 
       <div className="flex flex-col items-center">
-        <svg
-          className="w-3 h-3 text-red-500"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M12 5V19M12 19L19 12M12 19L5 12"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
+        {/* Down arrow icon */}
+        <span className="w-3 h-3 flex items-center justify-center">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 5V19M12 19L19 12M12 19L5 12" /></svg>
+        </span>
         <span className="text-[8px] font-bold text-red-500">10%</span>
       </div>
     </div>

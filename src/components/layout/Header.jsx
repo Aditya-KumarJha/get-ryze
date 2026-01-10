@@ -44,14 +44,21 @@ const Header = () => {
           >
             Case Studies
           </a>
-          <a
-            href="#about"
-            className={`tracking-wide text-zinc-600 hover:text-black transition-all duration-300 font-medium ${
-              isScrolled ? "text-[15px]" : "text-[17.3px]"
-            }`}
-          >
-            About Us
-          </a>
+          {/* About Us Dropdown */}
+          <div className="relative group">
+            <a
+              href="#about"
+              className={`tracking-wide text-zinc-600 hover:text-black transition-all duration-300 font-medium ${
+                isScrolled ? "text-[15px]" : "text-[17.3px]"
+              }`}
+            >
+              About Us
+            </a>
+            <div className="absolute left-1/2 -translate-x-1/2 mt-2 w-40 bg-white rounded-xl shadow-lg border border-zinc-100 opacity-0 group-hover:opacity-100 group-hover:pointer-events-auto pointer-events-none transition-all duration-200 z-50">
+              <a href="#our-story" className="block px-5 py-3 text-zinc-700 hover:bg-zinc-50 rounded-t-xl transition-colors">Our Story</a>
+              <a href="#community" className="block px-5 py-3 text-zinc-700 hover:bg-zinc-50 rounded-b-xl transition-colors">Community</a>
+            </div>
+          </div>
         </div>
 
         {/* CTA — RIGHT CORNER */}
