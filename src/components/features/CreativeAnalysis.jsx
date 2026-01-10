@@ -47,23 +47,20 @@ const CreativeAnalysis = () => {
     analysisItems.map(item => item.basePercentage)
   );
 
-  // Animate percentages up and down
   useEffect(() => {
     const interval = setInterval(() => {
-      setPercentages((prev) =>
-        prev.map((current, index) => {
+      setPercentages(prev =>
+        prev.map((_, index) => {
           const item = analysisItems[index];
           const range = item.maxPercentage - item.minPercentage;
           const time = Date.now() / 1000;
-          // Use sine wave to oscillate between min and max
           const offset = Math.sin(time * 2 + index) * (range / 2);
-          return Math.round(item.minPercentage + (range / 2) + offset);
+          return Math.round(item.minPercentage + range / 2 + offset);
         })
       );
-    }, 100); // Update every 100ms for smooth animation
+    }, 100);
 
     return () => clearInterval(interval);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getColorClass = (color) => {
@@ -76,14 +73,16 @@ const CreativeAnalysis = () => {
   };
 
   return (
-    <div className="relative aspect-[9/18.4] bg-white rounded-2xl overflow-hidden border border-zinc-200 shadow-sm group cursor-pointer transform md:scale-95 lg:scale-100">
+    <div className="relative aspect-[9/18.4] bg-white rounded-2xl overflow-hidden border border-zinc-200 shadow-sm transform md:scale-95 lg:scale-100">
       <div className="w-full h-full overflow-hidden">
         <div className="relative w-full h-full overflow-hidden shadow-2xl bg-zinc-50 rounded-2xl">
-          <div className="absolute inset-0 z-10 group">
+          
+          {/* Image (always visible) */}
+          <div className="absolute inset-0 z-10">
             <img
               src="/base44.webp"
               alt="Running Shoes Ad"
-              className="w-full h-full object-contain object-bottom transform scale-[1.28] translate-y-10 origin-bottom group-hover:scale-[1.33] transition-transform duration-1000 ease-out saturate-[0.85] brightness-[1.02]"
+              className="w-full h-full object-contain object-bottom transform scale-[1.28] translate-y-10 origin-bottom transition-transform duration-1000 ease-out saturate-[0.85] brightness-[1.02] hover:scale-[1.3] hover:translate-y-8"
             />
             <div className="absolute inset-0 bg-white/15 pointer-events-none" />
           </div>
@@ -124,14 +123,16 @@ const CreativeAnalysis = () => {
                   {percentages[index]}%
                 </span>
               </div>
+
               <div className="w-full bg-gray-200 rounded-full h-0.5 mb-1.5 overflow-hidden">
                 <div
                   className={`h-full rounded-full relative overflow-hidden transition-all duration-100 ease-in-out ${getColorClass(item.color)}`}
                   style={{ width: `${percentages[index]}%` }}
                 >
-                  <div className="absolute top-0 left-0 bottom-0 right-0 bg-linear-to-r from-transparent via-white/40 to-transparent w-full h-full animate-shimmer" />
+                  <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/40 to-transparent w-full h-full animate-shimmer" />
                 </div>
               </div>
+
               <ul className="space-y-0.5">
                 {item.feedback.map((feedback, idx) => (
                   <li key={idx} className="flex items-start text-[9px] leading-3 text-gray-700">
@@ -144,6 +145,7 @@ const CreativeAnalysis = () => {
           ))}
         </div>
       </div>
+
       <div className="absolute top-0 left-0 right-0 h-[7%] bg-linear-to-b from-black/90 via-black/85 via-70% to-transparent z-10 pointer-events-none" />
       <div className="absolute top-1 left-4 right-4 text-center z-20 pointer-events-none">
         <span className="text-white text-xs sm:text-sm md:text-base font-bold tracking-wide leading-tight block drop-shadow-md">
@@ -156,4 +158,3 @@ const CreativeAnalysis = () => {
 };
 
 export default CreativeAnalysis;
-

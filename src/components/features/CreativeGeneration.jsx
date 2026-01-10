@@ -2,7 +2,7 @@ import React from 'react';
 
 const CreativeGeneration = () => {
   return (
-    <div className="relative aspect-[9/18.4] bg-white rounded-2xl overflow-hidden border border-zinc-200 shadow-sm group cursor-pointer transform md:scale-95 lg:scale-100">
+    <div className="relative aspect-[9/18.4] bg-white rounded-2xl overflow-hidden border border-zinc-200 shadow-sm transform md:scale-95 lg:scale-100">
       <video
         src="/video.mp4"
         className="absolute inset-0 w-full h-full object-cover"
@@ -23,4 +23,3 @@ const CreativeGeneration = () => {
 };
 
 export default CreativeGeneration;
-

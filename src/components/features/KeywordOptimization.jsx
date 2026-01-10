@@ -17,56 +17,49 @@ const KeywordOptimization = () => {
   const [scanningIndex, setScanningIndex] = useState(0);
   const [isScanningComplete, setIsScanningComplete] = useState(false);
 
-  // Scan through all items from top to bottom
   useEffect(() => {
     const interval = setInterval(() => {
-      setScanningIndex((prev) => {
+      setScanningIndex(prev => {
         if (prev >= baseKeywords.length - 1) {
-          // Scanning complete, set final statuses
           setIsScanningComplete(true);
           return prev;
         }
         return prev + 1;
       });
-    }, 2000); // Change scanning row every 2 seconds
+    }, 2000);
 
     return () => clearInterval(interval);
   }, [baseKeywords.length]);
 
-  // Restart scanning after completion
   useEffect(() => {
     if (!isScanningComplete) return;
 
     const restartTimer = setTimeout(() => {
       setScanningIndex(0);
       setIsScanningComplete(false);
-    }, 3000); // Wait 3 seconds before restarting
+    }, 3000);
 
     return () => clearTimeout(restartTimer);
   }, [isScanningComplete]);
 
-  // Create keywords array with status applied
   const keywords = baseKeywords.map((kw, idx) => {
     let status = 'PENDING';
-    
+
     if (isScanningComplete) {
-      // After scanning, alternate: 1st=KEYWORD, 2nd=NEGATIVE, 3rd=KEYWORD, etc.
       status = idx % 2 === 0 ? 'KEYWORD' : 'NEGATIVE';
     } else if (idx === scanningIndex) {
       status = 'SCANNING';
     } else if (idx < scanningIndex) {
-      // Items already scanned get their final status
       status = idx % 2 === 0 ? 'KEYWORD' : 'NEGATIVE';
     }
-    
+
     return {
       ...kw,
       status,
-      color: status === 'KEYWORD' ? 'green' : status === 'NEGATIVE' ? 'red' : 'gray',
     };
   });
 
-  const getStatusBadge = (status, color) => {
+  const getStatusBadge = (status) => {
     if (status === 'KEYWORD') {
       return (
         <div className="w-20 h-6 bg-green-100 text-green-600 rounded-full flex items-center justify-center shadow-sm animate-pop-in">
@@ -84,8 +77,18 @@ const KeywordOptimization = () => {
     if (status === 'SCANNING') {
       return (
         <div className="w-20 h-6 bg-blue-100 rounded-full flex items-center justify-center gap-1">
-          <svg className="w-3 h-3 text-blue-500 animate-spin" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+          <svg
+            className="w-3 h-3 text-blue-500 animate-spin"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2.5"
+              d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+            />
           </svg>
           <span className="text-blue-500 font-bold text-[9px]">Scanning</span>
         </div>
@@ -98,9 +101,8 @@ const KeywordOptimization = () => {
     );
   };
 
-  const getConvColor = (conv) => {
-    return conv > 0 ? 'text-green-600' : 'text-gray-400';
-  };
+  const getConvColor = (conv) =>
+    conv > 0 ? 'text-green-600' : 'text-gray-400';
 
   const getCPAColor = (cpa) => {
     if (cpa === 0) return 'text-gray-600';
@@ -109,51 +111,51 @@ const KeywordOptimization = () => {
   };
 
   return (
-    <div className="relative aspect-[9/18.4] bg-white rounded-2xl overflow-hidden border border-zinc-200 shadow-sm group cursor-pointer transform md:scale-95 lg:scale-100">
-      <div className="w-full h-full overflow-hidden">
-        <div className="w-full h-full bg-white relative overflow-hidden font-sans rounded-2xl">
-          <div className="w-full h-full bg-white flex flex-col font-sans p-6 pb-4">
-            <div className="flex-1 flex flex-col gap-3 overflow-hidden pt-4">
-              {keywords.map((keyword, index) => (
-                <div
-                  key={index}
-                  className={`flex items-center h-12 border-b border-gray-50 transition-all duration-500 ${
-                    keyword.status === 'SCANNING' ? 'bg-blue-50/80 mx-0 px-2 rounded-xl shadow-sm' : 'px-0'
-                  }`}
-                >
-                  <div className="w-[40%] pl-0 pr-1">
-                    <div className="font-medium text-gray-800 text-xs leading-tight truncate">
-                      {keyword.term}
-                    </div>
-                  </div>
-                  <div className="w-[15%] text-right pr-1">
-                    <div className={`font-medium text-xs ${getConvColor(keyword.conv)}`}>
-                      {keyword.conv}
-                    </div>
-                  </div>
-                  <div className="w-[15%] text-right pr-2">
-                    <div className={`font-medium text-xs ${getCPAColor(keyword.cpa)}`}>
-                      ${keyword.cpa}
-                    </div>
-                  </div>
-                  <div className="w-[30%] flex justify-center">
-                    {getStatusBadge(keyword.status, keyword.color)}
-                  </div>
+    <div className="relative aspect-[9/18.4] bg-white rounded-2xl overflow-hidden border border-zinc-200 shadow-sm">
+      <div className="w-full h-full bg-white rounded-2xl p-6 pb-4 flex flex-col">
+        <div className="flex-1 flex flex-col gap-3 overflow-hidden pt-4">
+          {keywords.map((keyword, index) => (
+            <div
+              key={index}
+              className={`flex items-center h-12 border-b border-gray-50 transition-all duration-500 ${
+                keyword.status === 'SCANNING'
+                  ? 'bg-blue-50/80 px-2 rounded-xl shadow-sm'
+                  : 'px-0'
+              }`}
+            >
+              <div className="w-[40%] pr-1">
+                <div className="font-medium text-gray-800 text-xs truncate">
+                  {keyword.term}
                 </div>
-              ))}
+              </div>
+              <div className="w-[15%] text-right pr-1">
+                <div className={`font-medium text-xs ${getConvColor(keyword.conv)}`}>
+                  {keyword.conv}
+                </div>
+              </div>
+              <div className="w-[15%] text-right pr-2">
+                <div className={`font-medium text-xs ${getCPAColor(keyword.cpa)}`}>
+                  ${keyword.cpa}
+                </div>
+              </div>
+              <div className="w-[30%] flex justify-center">
+                {getStatusBadge(keyword.status)}
+              </div>
             </div>
-            <div className="flex items-center h-16 border-t border-gray-100 mt-4 text-xs font-bold text-gray-400 tracking-widest">
-              <div className="w-[40%] pl-0">Search term</div>
-              <div className="w-[15%] text-right pr-1">Conv</div>
-              <div className="w-[15%] text-right pr-4">CPA</div>
-              <div className="w-[30%] text-center">Action</div>
-            </div>
-          </div>
+          ))}
+        </div>
+
+        <div className="flex items-center h-16 border-t border-gray-100 mt-4 text-xs font-bold text-gray-400 tracking-widest">
+          <div className="w-[40%]">Search term</div>
+          <div className="w-[15%] text-right pr-1">Conv</div>
+          <div className="w-[15%] text-right pr-4">CPA</div>
+          <div className="w-[30%] text-center">Action</div>
         </div>
       </div>
-      <div className="absolute top-0 left-0 right-0 h-[7%] bg-linear-to-b from-black/90 via-black/85 via-70% to-transparent z-10 pointer-events-none" />
+
+      <div className="absolute top-0 left-0 right-0 h-[7%] bg-linear-to-b from-black/90 via-black/85 to-transparent z-10 pointer-events-none" />
       <div className="absolute top-1 left-4 right-4 text-center z-20 pointer-events-none">
-        <span className="text-white text-xs sm:text-sm md:text-base font-bold tracking-wide leading-tight block drop-shadow-md">
+        <span className="text-white text-xs sm:text-sm md:text-base font-bold tracking-wide drop-shadow-md">
           Keyword optimization
         </span>
       </div>
@@ -163,4 +165,3 @@ const KeywordOptimization = () => {
 };
 
 export default KeywordOptimization;
-
